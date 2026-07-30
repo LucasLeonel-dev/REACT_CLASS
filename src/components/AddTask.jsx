@@ -6,7 +6,7 @@ function AddTask ({ onAddTaskSubmit }) {
     const [description, setDescription]= useState("");
     return (
         <div className="space-y-4 p-6 bg-slate-200 rounded-md shadow flex flex-col">{/*flex flex col faz ficar em colunas*/}
-            <Input //criei uma função(componente) para n ter que repetir a mesma estilização em 2 htmls ou mais 
+            <Input //criei uma função(componente funcional) para n ter que repetir a mesma estilização em 2 htmls ou mais 
             type="text" 
             placeholder="Digite o titulo da tarefa"
             value = {title} 

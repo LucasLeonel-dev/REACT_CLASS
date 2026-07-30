@@ -9,7 +9,7 @@ function TaskPage(){
 
     return (
     <div className="h-screen w-screen bg-slate-500 p-6">
-      <div className="w-125 space-y-4">
+      <div className="w-125 mx-auto space-y-4">
         <div className="flex justify-center relative mb-6">
           <button
             onClick={() => navigate(-1)}//-1 faz voltar para pagina anterior, por ser uma funcao precisa do arrow function para chamar 
