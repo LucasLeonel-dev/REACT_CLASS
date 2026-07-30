@@ -3,10 +3,13 @@ import { Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
 function Tasks (props){//inves de props eu poderia colocar as funcoes diretamente aq, para n ter que ficar digitando props.func or var 
-    const navigates = useNavigate(); //hook que leva para outra pagina, com o url criado por mim
+    const navigate = useNavigate(); //hook que leva para outra pagina, com o url criado por mim
 
-    function onSeeDetailsClick(task) {//oque tiver dentro do ${} é js oque tiver fora nn, por isso o ``
-        navigates(`/task?title=${task.title}&description=${task.description}`)
+      function onSeeDetailsClick(task) {
+        const query = new URLSearchParams();
+        query.set("title", task.title);
+        query.set("description", task.description);
+        navigate(`/task?${query.toString()}`);
     }
     return (
     <ul className="space-y-4 p-4 bg-slate-200 shadow rounded-md">    
