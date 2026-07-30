@@ -1,6 +1,7 @@
 import { ChevronRight } from 'lucide-react';
 import { Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router';
+import { Button } from "./Button";
 
 function Tasks (props){//inves de props eu poderia colocar as funcoes diretamente aq, para n ter que ficar digitando props.func or var 
     const navigate = useNavigate(); //hook que leva para outra pagina, com o url criado por mim
@@ -26,17 +27,16 @@ function Tasks (props){//inves de props eu poderia colocar as funcoes diretament
             <button 
             onClick={() => props.onTaskClick(task.id)} 
             className={`bg-slate-400 text-white p-2 rounded-md text-left w-full ${task.isCompleted && 'line-through'}`}>{task.title}</button>
-            <button
+            <Button
             //arrow function pq vou passar parametros(para ter aceso a title e desc), mas bom manter consistencia
-            onClick={()=>onSeeDetailsClick(task)} 
-            className="bg-slate-400 text-white p-2 rounded-md">
+                onClick={()=>onSeeDetailsClick(task)}>
                 <ChevronRight /> 
-            </button>
-             <button 
-             onClick={() => props.onDeleteTaskClick(task.id)}
-             className="bg-slate-400 text-white p-2 rounded-md">
+            </Button>
+
+             <Button 
+                onClick={() => props.onDeleteTaskClick(task.id)}>
                 <Trash2 /> 
-            </button>
+            </Button>
          </li>
          ))}
     </ul>
