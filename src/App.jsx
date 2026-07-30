@@ -1,29 +1,32 @@
 import AddTask from "./components/AddTask";
 import Tasks from "./components/Tasks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {v4} from "uuid"; //gera id aleatoria, biblioteca
 
 function App (){
-  const [tasks, setTasks] = useState([
-    {
-    id: 1,
-    title: 'Estudar React',
-    description: 'estudar React.js e Vite',
-    isCompleted: false,
-    },
-    {
-    id: 2,
-    title: 'Estudar Node',
-    description: 'estudar Node.js e Express',
-    isCompleted: false
-    },
-    {
-    id: 3,
-    title: 'Estudar Vite',
-    description: 'estudar Vite e React',
-    isCompleted: false
-  },
-]);
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem("tasks")) || []
+  );
+
+useEffect(()=>{
+  localStorage.setItem("tasks", JSON.stringify(tasks));//"tasks" é como eu vou me referir aos dados para ter acesso,json.stringfy(tasks),são os dados em si 
+},[tasks])//so vai executar a funcao quando task for alterada, msm que seja
+//clicar, deletar, adicionar, qualquer coisa q altere
+
+useEffect(()=> {//exemplo real de uso de api num caso desses, por exemplo os dados estarem no banco de dados
+  const fetchTasks = async () => {
+   //CHAMAR API
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=3',{
+    method: 'GET'
+  });
+  //PEGAR OS DADOS QUE ELA RETORNA
+  const data = await response.json(); 
+  console.log(data);
+  //ARMAZENAR/PERSISTIR OS DADOS QUE ELA RETORNA
+  setTasks(data);//faz aparecer na tela, pois mexe no useState 
+  }
+  fetchTasks();
+}, [])
 
 function onTaskClick(taskId){
   const newTasks = tasks.map(task => {

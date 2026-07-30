@@ -6,10 +6,10 @@ function Tasks (props){//inves de props eu poderia colocar as funcoes diretament
     const navigate = useNavigate(); //hook que leva para outra pagina, com o url criado por mim
 
       function onSeeDetailsClick(task) {
-        const query = new URLSearchParams();
-        query.set("title", task.title);
-        query.set("description", task.description);
-        navigate(`/task?${query.toString()}`);
+        const query = new URLSearchParams(); //URLSearchParams() faz o tratamento da string para n ter complicações
+        query.set("title", task.title);//puxar task title
+        query.set("description", task.description);//puxar task description
+        navigate(`/task?${query.toString()}`);//como vai ficar http, com o query  
     }
     return (
     <ul className="space-y-4 p-4 bg-slate-200 shadow rounded-md">    
@@ -27,7 +27,7 @@ function Tasks (props){//inves de props eu poderia colocar as funcoes diretament
             onClick={() => props.onTaskClick(task.id)} 
             className={`bg-slate-400 text-white p-2 rounded-md text-left w-full ${task.isCompleted && 'line-through'}`}>{task.title}</button>
             <button
-            //arrow function pq vou passar parametros, mas bom manter consistencia
+            //arrow function pq vou passar parametros(para ter aceso a title e desc), mas bom manter consistencia
             onClick={()=>onSeeDetailsClick(task)} 
             className="bg-slate-400 text-white p-2 rounded-md">
                 <ChevronRight /> 
