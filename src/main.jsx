@@ -13,7 +13,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/task",
-    element: <taskPage />,
+    element: <TaskPage />, //deu erro pq tava com letra minuscula, n pode
   }
 ]);
 
